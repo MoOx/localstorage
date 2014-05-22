@@ -1,0 +1,27 @@
+{
+  "name": "putainde-localstorage",
+  "version": "0.0.0",
+  "description": "A simple localStorage abstraction",
+  "main": "src/localstorage.js",
+  "keywords": [
+    "localStorage",
+    "storage"
+  ],
+  "license": "MIT",
+  "authors": [
+    "Maxime Thirouin <m@moox.io>"
+  ],
+  "homepage": "https://github.com/putaindecode/localstorage",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
