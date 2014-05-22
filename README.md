@@ -16,12 +16,6 @@ You can install putainde-localstorage from **npm**
 $ npm install putainde-localstorage
 ```
 
-Or using **bower**
-
-```shell
-$ bower install putainde-localstorage
-```
-
 putainde-localstorage can obviously be downloaded directly.
 
 ## Usage
