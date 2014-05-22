@@ -1,0 +1,46 @@
+{
+  "name": "putainde-localstorage",
+  "version": "0.0.0",
+  "description": "A simple localStorage abstraction",
+  "main": "src/localstorage.js",
+  "keywords": [
+    "localStorage",
+    "storage"
+  ],
+  "license": "MIT",
+  "author": "MoOx <m@moox.io>",
+  "scripts": {
+    "test": "testling"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/putaindecode/localstorage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/putaindecode/localstorage/issues"
+  },
+  "homepage": "https://github.com/putaindecode/localstorage",
+  "devDependencies": {
+    "gulp": "^3.5.6",
+    "gulp-jscs": "^0.3.2",
+    "gulp-jshint": "^1.5.1",
+    "gulp-plumber": "^0.5.6",
+    "gulp-util": "^2.2.14",
+    "jshint-stylish": "^0.1.5",
+    "minimist": "^0.1.0",
+    "tape": "^2.13.1"
+  },
+  "testling": {
+    "files": "test/**/*.js",
+    "browsers": [
+      "ie/8..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/5..latest",
+      "opera/11.0..latest",
+      "iphone/6..latest",
+      "ipad/6..latest",
+      "android-browser/latest"
+    ]
+  }
+}
