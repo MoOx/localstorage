@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": "MoOx <m@moox.io>",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test && testling"
   },
   "repository": {
     "type": "git",
