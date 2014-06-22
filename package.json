@@ -1,6 +1,6 @@
 {
   "name": "putainde-localstorage",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple localStorage abstraction",
   "main": "src/localstorage.js",
   "keywords": [
@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": "MoOx <m@moox.io>",
   "scripts": {
-    "test": "gulp test && testling"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
