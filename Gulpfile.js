@@ -1,19 +1,15 @@
 var gulp = require("gulp")
+var jscs = require("gulp-jscs")
+var jshint = require("gulp-jshint")
 
-// generated assets
-gulp.task("scripts:linting", require("./tasks/scripts-linting"))
+// lint
+gulp.task("default", function() {
+  return gulp.src("index.js")
+    .pipe(jscs())
+    .pipe(jshint())
+    .pipe(jshint.reporter("jshint-stylish"))
+})
 
-// build
-gulp.task("dist", [
-  "scripts:linting",
-])
-
-// dev tasks
-gulp.task("default", ["watch"])
-gulp.task("test", ["dist"])
-
-gulp.task("watch", ["dist"], function() {
-  gulp.watch("./src/**/*.js", ["scripts:linting"])
-  gulp.watch("./tasks/**/*.js", ["scripts:linting"])
-  gulp.watch("./tests/**/*.js", ["scripts:linting"])
+gulp.task("watch", function() {
+  gulp.watch("./index.js", ["default"])
 })
