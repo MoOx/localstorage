@@ -1,69 +1,70 @@
-var config = {
-  prefix : "storage."
-}
+var localstorage = {
+  get : function(key){
+    var value = window.localStorage.getItem(key)
 
-function setConfig(cfg){
-  config.prefix = cfg.prefix || "storage."
-}
-
-function getFromLocalStorage(key){
-  var value = localStorage.getItem(key)
-  try{
-    value = JSON.parse(value)
-  }
-  catch(e) {
-    // if (console) console.log(key + " doesnt seems to be JSON")
-  }
-
-  return value
-}
-
-// Set item in localStorage
-function set(key, value){
-  if(typeof value === "object") {
-    value = JSON.stringify(value)
-  }
-  localStorage.setItem(config.prefix + key, value)
-}
-
-// Get item from localStorage
-function get(key, defaultValue){
-  return getFromLocalStorage(config.prefix + key) || defaultValue
-}
-
-function getAll(){
-  var data = {}
-  var key
-
-  for(key in localStorage){
-    if(key.indexOf(config.prefix) === 0) {
-      data[key.replace(config.prefix, "")] = getFromLocalStorage(key)
+    try{
+      value = JSON.parse(value)
     }
-  }
-
-  return data
-}
-
-function remove(key){
-  localStorage.removeItem(config.prefix + key)
-}
-
-function removeAll(){
-  var key
-  for(key in localStorage){
-    if(key.indexOf(config.prefix) === 0) {
-      localStorage.removeItem(key)
+    catch(e) {
+      if(console && console.warn) console.warn("'" + key + "'" + " isn't valid JSON: " + value)
     }
+
+    return value || {}
+  },
+
+  set : function(key, value){
+    return window.localStorage.setItem(key, JSON.stringify(value))
+  },
+
+  remove : function(key){
+    return window.localStorage.removeItem(key)
   }
 }
 
-module.exports = {
-  setConfig : setConfig,
-  set : set,
-  get : get,
-  getAll : getAll,
-  remove : remove,
-  removeAll : removeAll,
-  clean : removeAll,
-  clear : removeAll
+function Storage(cfg){
+  cfg = cfg || {}
+  this.ns = cfg.namespace || "storage"
+  this.cache = {}
+  // every write or read access should update the cache
 }
+
+Storage.create = function(cfg){
+  return new Storage(cfg)
+}
+
+Storage.prototype = {
+  set : function(key, value){
+    this.cache[key] = value
+
+    return localstorage.set(this.ns, this.cache)
+  },
+
+  get : function(key, defaultValue){
+    this.cache = localstorage.get(this.ns)
+
+    return this.cache[key] !== undefined ? this.cache[key] : defaultValue
+  },
+
+  getAll : function(){
+    this.cache = localstorage.get(this.ns)
+
+    return this.cache
+  },
+
+  remove : function(key){
+    delete this.cache[key]
+
+    return localstorage.set(this.ns, this.cache)
+  },
+
+  removeAll : function(){
+    this.cache = {}
+
+    return localstorage.remove(this.ns)
+  }
+}
+
+Storage.prototype.clear = Storage.prototype.removeAll
+Storage.prototype.clean = Storage.prototype.removeAll
+
+module.exports = Storage

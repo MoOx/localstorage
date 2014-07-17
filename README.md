@@ -20,37 +20,59 @@ putainde-localstorage can obviously be downloaded directly.
 
 ## Usage
 
-### `localstorage.config(options)`
+```js
+var localstorage = require("putainde-localstorage")
+var storage = localstorage.create({namespace: "myComponent"})
+// same as
+var LocalStorage = require("putainde-localstorage")
+var storage = new LocalStorage({namespace: "myComponent"})
 
-#### config.prefix
+// set & get
+storage.set("foo", {bar: "baz"})
+storage.get("foo") // => {bar: "baz"}
 
-Use a prefix for all your data stored (default `storage.`)
+// remove
+storage.remove("foo")
 
-### `localstorage.set(key, value)`
+// remove all
+storage.clear()
+```
+
+### `localstorage.create(options)` > `storage`
+
+Create a new instance (== `new localstorage(options)`)
+
+#### options
+
+##### options.namespace
+
+Use a namespace for all your data stored (default `storage.`)
+
+### `storage.set(key, value)`
 
 Setter. Accept string, numeric, object... (converted to JSON).
 
-### `localstorage.get(key)`
+### `storage.get(key)`
 
 Getter.
 
-### `localstorage.getAll()`
+### `storage.getAll()`
 
 Returns all values.
 
-### `localstorage.remove(key)`
+### `storage.remove(key)`
 
 Remove a value.
 
-#### `localstorage.clear()`
+#### `storage.clear()`
 
 Remove all values.
 
-#### `localstorage.clean()`
+#### `storage.clean()`
 
 `clear()` alias.
 
-#### `localstorage.removeAll()`
+#### `removeAll()`
 
 `clear()` alias.
 

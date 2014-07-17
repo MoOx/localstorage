@@ -10,7 +10,8 @@
   "license": "MIT",
   "author": "MoOx <m@moox.io>",
   "scripts": {
-    "test": "gulp"
+    "test": "gulp",
+    "testling": "testling | tap-colorize"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "gulp-jscs": "^0.3.2",
     "gulp-jshint": "^1.5.1",
     "jshint-stylish": "^0.1.5",
+    "tap-colorize": "^1.2.0",
     "tape": "^2.13.1"
   },
   "testling": {
