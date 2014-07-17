@@ -11,6 +11,7 @@
   "author": "MoOx <m@moox.io>",
   "scripts": {
     "test": "gulp",
+    "watch": "gulp watch",
     "testling": "testling | tap-colorize"
   },
   "repository": {

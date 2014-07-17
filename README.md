@@ -91,10 +91,17 @@ Fork, clone, then
 ```shell
 $ npm i -g gulp
 $ npm i
-$ gulp
+$ npm run watch
 ```
 
 Now you can work on the file, then make a commit and a push something when gulp doesn't show any error.
+
+To run browsers tests, please use
+
+```shell
+$ npm run testling
+```
+
 Thanks.
 
 ## [License](LICENSE-MIT)
