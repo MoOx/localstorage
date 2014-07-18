@@ -1,11 +1,14 @@
 # Changelog
 
-## 0.3.0 - 2014-06-18
+## 1.1 - 2014-06-18
+
+- `set()` now accept an object with key, value
+
+## 1.0 - 2014-06-17
 
 - api change: `prefix` is now `namespace`
 - fix: you can store boolean
 - enhancement: you can now use multiple instance with differents namespaces (`storage.create()` returns an new instance). Now you cannot change options on runtime (too dangerous).
-
 
 ## 0.2.0 - 2014-06-18
 

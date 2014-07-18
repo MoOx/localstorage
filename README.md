@@ -50,7 +50,11 @@ Use a namespace for all your data stored (default `storage.`)
 
 ### `storage.set(key, value)`
 
-Setter. Accept string, numeric, object... (converted to JSON).
+Setter. Accept string, numeric, object...
+
+### `storage.set({key: value})`
+
+Alternative way to set (multiple) value(s).
 
 ### `storage.get(key)`
 

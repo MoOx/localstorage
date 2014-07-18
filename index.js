@@ -34,7 +34,18 @@ Storage.create = function(cfg){
 
 Storage.prototype = {
   set : function(key, value){
-    this.cache[key] = value
+
+    // set({foo: "bar"})
+    if(arguments.length === 1 && typeof key === "object") {
+      Object.keys(key).forEach(function(k){
+        this.cache[k] = key[k]
+      }, this)
+    }
+
+    // set("foo", "bar")
+    else {
+      this.cache[key] = value
+    }
 
     return localstorage.set(this.ns, this.cache)
   },
