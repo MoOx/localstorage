@@ -1,6 +1,6 @@
 {
   "name": "putainde-localstorage",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple localStorage abstraction",
   "main": "src/localstorage.js",
   "keywords": [
