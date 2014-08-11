@@ -23,7 +23,8 @@
     "jshint": "^2.5.2",
     "jshint-stylish": "^0.4.0",
     "tap-colorize": "^1.2.0",
-    "tape": "^2.13.4"
+    "tape": "^2.13.4",
+    "testling": "^1.7.0"
   },
   "scripts": {
     "jscs": "jscs *.js **/*.js",
