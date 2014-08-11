@@ -10,7 +10,7 @@ test("get & set should work with default namespace", function(t){
   t.same(strg.get("foo"), {bar : "baz"}, "Gets and sets correctly")
 
   strg.set("bar", {baz : "foo"})
-  t.same(strg.getAll("bar"), {foo : {bar : "baz"}, bar : {baz : "foo"}}, "Get all works correctly")
+  t.same(strg.get(), {foo : {bar : "baz"}, bar : {baz : "foo"}}, "Get all works correctly")
 
   strg.set("boo", true)
   t.same(strg.get("boo"), true, "true booleans are working correctly")
@@ -18,7 +18,7 @@ test("get & set should work with default namespace", function(t){
   t.same(strg.get("boo"), false, "false booleans are working correctly")
 
   strg.set({foo : "bar", bar : "baz", boo : false})
-  t.same(strg.getAll(), {foo : "bar", bar : "baz", boo : false}, "set accept an object of keys/values")
+  t.same(strg.get(), {foo : "bar", bar : "baz", boo : false}, "set accept an object of keys/values")
 
   t.end()
 })
@@ -46,7 +46,7 @@ test("clear works", function(t){
   strg.set("foo", {foo : "bar"})
   strg.set("bar", {baz : "foo"})
   strg.clear()
-  t.same(strg.getAll(), {}, "clear works")
+  t.same(strg.get(), {}, "clear works")
 
   t.end()
 })

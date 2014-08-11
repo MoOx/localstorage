@@ -53,13 +53,11 @@ Storage.prototype = {
   get : function(key, defaultValue){
     this.cache = localstorage.get(this.ns)
 
+    if(arguments.length === 0) {
+      return this.cache
+    }
+
     return this.cache[key] !== undefined ? this.cache[key] : defaultValue
-  },
-
-  getAll : function(){
-    this.cache = localstorage.get(this.ns)
-
-    return this.cache
   },
 
   remove : function(key){
@@ -68,14 +66,11 @@ Storage.prototype = {
     return localstorage.set(this.ns, this.cache)
   },
 
-  removeAll : function(){
+  clear : function(){
     this.cache = {}
 
     return localstorage.remove(this.ns)
   }
 }
-
-Storage.prototype.clear = Storage.prototype.removeAll
-Storage.prototype.clean = Storage.prototype.removeAll
 
 module.exports = Storage

@@ -60,7 +60,7 @@ Alternative way to set (multiple) value(s).
 
 Getter.
 
-### `storage.getAll()`
+### `storage.get()`
 
 Returns all values.
 
@@ -68,21 +68,11 @@ Returns all values.
 
 Remove a value.
 
-#### `storage.clear()`
+### `storage.clear()`
 
 Remove all values.
 
-#### `storage.clean()`
-
-`clear()` alias.
-
-#### `removeAll()`
-
-`clear()` alias.
-
 ---
-
-## [Changelog](CHANGELOG.md)
 
 ## Contributing
 
@@ -107,5 +97,7 @@ $ npm run testling
 ```
 
 Thanks.
+
+## [Changelog](CHANGELOG.md)
 
 ## [License](LICENSE-MIT)

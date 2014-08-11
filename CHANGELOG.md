@@ -1,10 +1,17 @@
 # Changelog
 
-## 1.1 - 2014-06-18
+## 2.0.0 - 2014-06-18
+
+- `get()` without argument now return all values
+- `getAll()` has been removed
+- `removeAll()` has been removed
+- `clean()` has been removed
+
+## 1.1.0 - 2014-06-18
 
 - `set()` now accept an object with key, value
 
-## 1.0 - 2014-06-17
+## 1.0. - 2014-06-17
 
 - api change: `prefix` is now `namespace`
 - fix: you can store boolean
