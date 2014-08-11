@@ -2,35 +2,33 @@
   "name": "putainde-localstorage",
   "version": "1.1.0",
   "description": "A simple localStorage abstraction",
-  "main": "src/localstorage.js",
   "keywords": [
     "localStorage",
     "storage"
   ],
+  "author": "MoOx",
   "license": "MIT",
-  "author": "MoOx <m@moox.io>",
-  "scripts": {
-    "test": "gulp",
-    "watch": "gulp watch",
-    "testling": "testling | tap-colorize"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/putaindecode/localstorage.git"
   },
-  "bugs": {
-    "url": "https://github.com/putaindecode/localstorage/issues"
-  },
-  "homepage": "https://github.com/putaindecode/localstorage",
+  "files": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "index.js"
+  ],
   "devDependencies": {
-    "gulp": "^3.5.6",
-    "gulp-jscs": "^1.1.0",
-    "gulp-jshint": "^1.5.1",
-    "gulp-plumber": "^0.6.3",
-    "gulp-util": "^2.2.20",
-    "jshint-stylish": "^0.1.5",
+    "jscs": "^1.5.9",
+    "jshint": "^2.5.2",
+    "jshint-stylish": "^0.4.0",
     "tap-colorize": "^1.2.0",
-    "tape": "^2.13.1"
+    "tape": "^2.13.4"
+  },
+  "scripts": {
+    "jscs": "jscs *.js **/*.js",
+    "jshint": "jshint . --exclude node_modules --reporter node_modules/jshint-stylish/stylish.js",
+    "test": "npm run jscs && npm run jshint && testling | tap-colorize"
   },
   "testling": {
     "files": "test/**/*.js",
