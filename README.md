@@ -76,27 +76,14 @@ Remove all values.
 
 ## Contributing
 
-Please read the file nobody reads (make me lie) [CONTRIBUTING.md](CONTRIBUTING.md)
+Work on a branch, install dev-dependencies, respect coding style & run tests before submitting a bug fix or a feature.
 
-### tl;dr;
-
-Fork, clone, then
-
-```shell
-$ npm i -g gulp
-$ npm i
-$ npm run watch
+```bash
+git clone https://github.com/putaindecode/localstorage.git
+git checkout -b patch-1
+npm install
+npm test
 ```
-
-Now you can work on the file, then make a commit and a push something when gulp doesn't show any error.
-
-To run browsers tests, please use
-
-```shell
-$ npm run testling
-```
-
-Thanks.
 
 ## [Changelog](CHANGELOG.md)
 
