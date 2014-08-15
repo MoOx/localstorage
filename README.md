@@ -27,6 +27,9 @@ var storage = localstorage.create({namespace: "myComponent"})
 var LocalStorage = require("putainde-localstorage")
 var storage = new LocalStorage({namespace: "myComponent"})
 
+// use `sessionStorage`
+var session = new LocalStorage({engine: 'sessionStorage'})
+
 // set & get
 storage.set("foo", {bar: "baz"})
 storage.get("foo") // => {bar: "baz"}
@@ -47,6 +50,10 @@ Create a new instance (== `new localstorage(options)`)
 ##### options.namespace
 
 Use a namespace for all your data stored (default `storage.`)
+
+##### options.engine
+
+Use either `localStorage` or `sessionStorage` (default `'localStorage'`)
 
 ### `storage.set(key, value)`
 
