@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.1.0 - 2014-15-18
+- `engine : 'sessionStorage'` added
+
 ## 2.0.0 - 2014-06-18
 
 - `get()` without argument now return all values

@@ -10,8 +10,12 @@ module.exports = Storage
 function Storage(cfg){
   cfg = cfg || {}
   this.ns = cfg.namespace || "storage"
-  this.cache = {}
-  // every write or read access should update the cache
+  this.cache = {} // every write or read access should update the cache
+  this.engine = cfg.engine || "localStorage"
+  if(this.engine !== "localStorage" && this.engine !== "sessionStorage") {
+    if(console && console.warn) console.warn("'" + this.engine + "'" + " isn't a valid value for engine, engine has been set to localStorage")
+    this.engine = "localStorage"
+  }
 }
 
 /**
@@ -48,7 +52,7 @@ Storage.prototype = {
       this.cache[key] = value
     }
 
-    return localstorage.set(this.ns, this.cache)
+    return localstorage.set(this.ns, this.cache, this.engine)
   },
 
   /**
@@ -59,7 +63,7 @@ Storage.prototype = {
    * @return {Object} value corresponding to key or all values if no key provided
    */
   get : function(key, defaultValue){
-    this.cache = localstorage.get(this.ns)
+    this.cache = localstorage.get(this.ns, this.engine)
 
     if(arguments.length === 0) {
       return this.cache
@@ -75,7 +79,7 @@ Storage.prototype = {
   remove : function(key){
     delete this.cache[key]
 
-    return localstorage.set(this.ns, this.cache)
+    return localstorage.set(this.ns, this.cache, this.engine)
   },
 
   /**
@@ -84,7 +88,7 @@ Storage.prototype = {
   clear : function(){
     this.cache = {}
 
-    return localstorage.remove(this.ns)
+    return localstorage.remove(this.ns, this.engine)
   }
 }
 
@@ -93,8 +97,8 @@ Storage.prototype = {
  * @type {Object}
  */
 var localstorage = {
-  get : function(key){
-    var value = window.localStorage.getItem(key)
+  get : function(key, engine){
+    var value = window[ engine ].getItem(key)
 
     try{
       value = JSON.parse(value)
@@ -106,11 +110,11 @@ var localstorage = {
     return value || {}
   },
 
-  set : function(key, value){
-    return window.localStorage.setItem(key, JSON.stringify(value))
+  set : function(key, value, engine){
+    return window[ engine ].setItem(key, JSON.stringify(value))
   },
 
-  remove : function(key){
-    return window.localStorage.removeItem(key)
+  remove : function(key, engine){
+    return window[ engine ].removeItem(key)
   }
 }
