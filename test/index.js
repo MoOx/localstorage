@@ -50,3 +50,18 @@ test("clear works", function(t){
 
   t.end()
 })
+
+test("get & set should work with a global namespace", function(t){
+  strg.set("foo", "bar")
+
+  storage.setGlobalNamespace("test")
+  t.notSame(strg.get("foo"), "bar", "non globally namespaced values shouldn't be accessible")
+  strg.set("foo", "baz")
+  t.same(strg.get("foo"), "baz", "Gets and sets correctly")
+
+  storage.clearGlobalNamespace()
+  t.notSame(strg.get("foo"), "baz", "globally namespaced values shouldn't be accessible, when namespace removed")
+  t.same(strg.get("foo"), "bar", "non globally namespaced values should be accessible again")
+
+  t.end()
+})

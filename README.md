@@ -16,12 +16,15 @@ You can install putainde-localstorage from **npm**
 $ npm install putainde-localstorage
 ```
 
-putainde-localstorage can obviously be downloaded directly.
+`putainde-localstorage` can obviously be downloaded directly.
 
 ## Usage
 
 ```js
 var localstorage = require("putainde-localstorage")
+localstorage.setGlobalNamespace("MyApp") // optional
+
+// create instance
 var storage = localstorage.create({namespace: "myComponent"})
 // same as
 var LocalStorage = require("putainde-localstorage")
@@ -71,6 +74,15 @@ Remove a value.
 ### `storage.clear()`
 
 Remove all values.
+
+### `localstorage.setGlobalNamespace(globalNamespace)`
+
+Add a global namespace.  
+localstorage default namespace is the current domain. This option allow you to add a global namespace for the entire runtime. For per instance namespace, checkout the instance options.
+
+### `localstorage.clearGlobalNamespace()`
+
+Clear the global namespace.  
 
 ---
 

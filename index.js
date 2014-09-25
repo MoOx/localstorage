@@ -1,4 +1,9 @@
 /**
+ * global variables
+ */
+var namespace = ""
+
+/**
  * Expose library
  */
 module.exports = Storage
@@ -12,6 +17,26 @@ function Storage(cfg){
   this.ns = cfg.namespace || "storage"
   this.cache = {}
   // every write or read access should update the cache
+}
+
+/**
+ * set a global namespace
+ *
+ * @param {String} ns global namespace
+ */
+Storage.setGlobalNamespace = function(ns){
+  if(ns !==  "") {
+    ns += "."
+  }
+
+  namespace = ns
+}
+
+/**
+ * clear the global namespace
+ */
+Storage.clearGlobalNamespace = function(){
+  namespace = ""
 }
 
 /**
@@ -94,7 +119,7 @@ Storage.prototype = {
  */
 var localstorage = {
   get : function(key){
-    var value = window.localStorage.getItem(key)
+    var value = window.localStorage.getItem(namespace + key)
 
     try{
       value = JSON.parse(value)
@@ -107,10 +132,10 @@ var localstorage = {
   },
 
   set : function(key, value){
-    return window.localStorage.setItem(key, JSON.stringify(value))
+    return window.localStorage.setItem(namespace + key, JSON.stringify(value))
   },
 
   remove : function(key){
-    return window.localStorage.removeItem(key)
+    return window.localStorage.removeItem(namespace + key)
   }
 }

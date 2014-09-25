@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0 - 2014-09-25
+
+- add ability to use a global namespace
+
 ## 2.0.0 - 2014-06-18
 
 - `get()` without argument now return all values
