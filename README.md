@@ -87,4 +87,4 @@ npm test
 
 ## [Changelog](CHANGELOG.md)
 
-## [License](LICENSE-MIT)
+## [License](LICENSE)
