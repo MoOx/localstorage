@@ -2,6 +2,8 @@
  * global variables
  */
 var namespace = ""
+var namespaceCache = {}
+
 
 /**
  * Expose library
@@ -15,7 +17,8 @@ module.exports = Storage
 function Storage(cfg){
   cfg = cfg || {}
   this.ns = cfg.namespace || "storage"
-  this.cache = {}
+  this.cache = namespaceCache[this.ns] || {}
+  namespaceCache[this.ns] = this.cache
   // every write or read access should update the cache
 }
 

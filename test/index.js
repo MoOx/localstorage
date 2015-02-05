@@ -65,3 +65,16 @@ test("get & set should work with a global namespace", function(t){
 
   t.end()
 })
+
+test("create() share namespace session", function(t){
+  var i1 = storage.create({namespace : "a"})
+  i1.set("k1", "b")
+
+  var i2 = storage.create({namespace : "a"})
+  i2.set("k2", "b")
+
+  var i3 = storage.create({namespace : "a"})
+  t.deepEqual(i3.get(), {k1 : "b", k2 : "b"})
+
+  t.end()
+})
