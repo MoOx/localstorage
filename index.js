@@ -2,8 +2,20 @@
  * global variables
  */
 var namespace = ""
-var namespaceCache = {}
+var cache = {}
 
+function getCache(ns){
+  if(cache[ns] === undefined) {
+    cache[ns] = storageEngine.get(ns) || {}
+  }
+
+  return cache[ns]
+}
+
+function setCache(ns, c){
+  cache[ns] = c
+  return storageEngine.set(ns, cache[ns])
+}
 
 /**
  * Expose library
@@ -17,29 +29,6 @@ module.exports = Storage
 function Storage(cfg){
   cfg = cfg || {}
   this.ns = cfg.namespace || "storage"
-  this.cache = namespaceCache[this.ns] || {}
-  namespaceCache[this.ns] = this.cache
-  // every write or read access should update the cache
-}
-
-/**
- * set a global namespace
- *
- * @param {String} ns global namespace
- */
-Storage.setGlobalNamespace = function(ns){
-  if(ns !==  "") {
-    ns += "."
-  }
-
-  namespace = ns
-}
-
-/**
- * clear the global namespace
- */
-Storage.clearGlobalNamespace = function(){
-  namespace = ""
 }
 
 /**
@@ -63,20 +52,21 @@ Storage.prototype = {
    * @param {Object} value value if first parameter is a key
    */
   set : function(key, value){
+    var c = getCache(this.ns)
 
     // set({foo: "bar"})
     if(arguments.length === 1 && typeof key === "object") {
       Object.keys(key).forEach(function(k){
-        this.cache[k] = key[k]
+        c[k] = key[k]
       }, this)
     }
 
     // set("foo", "bar")
     else {
-      this.cache[key] = value
+      c[key] = value
     }
 
-    return localstorage.set(this.ns, this.cache)
+    return setCache(this.ns, c)
   },
 
   /**
@@ -87,13 +77,13 @@ Storage.prototype = {
    * @return {Object} value corresponding to key or all values if no key provided
    */
   get : function(key, defaultValue){
-    this.cache = localstorage.get(this.ns)
+    var c = getCache(this.ns)
 
     if(arguments.length === 0) {
-      return this.cache
+      return c
     }
 
-    return this.cache[key] !== undefined ? this.cache[key] : defaultValue
+    return c[key] !== undefined ? c[key] : defaultValue
   },
 
   /**
@@ -101,18 +91,16 @@ Storage.prototype = {
    * @param  {String} key
    */
   remove : function(key){
-    delete this.cache[key]
-
-    return localstorage.set(this.ns, this.cache)
+    var cache = getCache(this.ns)
+    delete cache[key]
+    setCache(this.ns, cache)
   },
 
   /**
    * remove all values
    */
   clear : function(){
-    this.cache = {}
-
-    return localstorage.remove(this.ns)
+    setCache(this.ns, {})
   }
 }
 
@@ -120,7 +108,7 @@ Storage.prototype = {
  * localStorage engine
  * @type {Object}
  */
-var localstorage = {
+var storageEngine = {
   get : function(key){
     var value = window.localStorage.getItem(namespace + key)
 

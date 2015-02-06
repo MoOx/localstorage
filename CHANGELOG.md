@@ -1,3 +1,7 @@
+# 4.0.0 - 2014-02-06
+
+- Removed: global namespace notion dropped. It was just stupid and dangerous.
+
 # 3.0.0 - 2014-02-05
 
 - Changed: `create()` now share namespace with registry with instances with the same namespace
@@ -17,7 +21,7 @@
 
 - Added: `set()` now accept an object with key, value
 
-# 1.0. - 2014-06-17
+# 1.0.0 - 2014-06-17
 
 - Changed: api change: `prefix` is now `namespace`
 - Fixed: you can store boolean
