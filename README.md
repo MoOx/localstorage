@@ -6,14 +6,14 @@
 
 > A simple localStorage abstraction
 
-`localstorage` allow you to easily store & use JSON data.
+`localstorage` allows you to easily store & use JSON data.
 
 ## Installation
 
 You can install putainde-localstorage from **npm**
 
-```shell
-$ npm install putainde-localstorage
+```console
+$ npm install putainde-localstorage (--save)
 ```
 
 `putainde-localstorage` can obviously be downloaded directly.
